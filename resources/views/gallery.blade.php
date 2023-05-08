@@ -31,14 +31,16 @@
                             <div class="card mb-3">
                                 <div>
                                     <div class="card-img-actions">
-                                        <img src="{{asset('storage/' . $book->cover_img)}}" class="card-img img-fluid" width="96" height="350" alt="">
+                                        <a href="{{route('book.details', $book)}}">
+                                            <img src="{{asset('storage/' . $book->cover_img)}}" class="card-img img-fluid" width="96" height="350" alt="">
+                                        </a>    
                                     </div>
                                 </div>
                                 
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
                                         <h6 class="font-weight-semibold card-title mb-2">
-                                            <a href="#" class="text-default mb-2" data-abc="true">
+                                            <a href="{{route('book.details', $book)}}" class="text-default mb-2" data-abc="true">
                                                 {{$book->title}}
                                             </a>
                                         </h6>
