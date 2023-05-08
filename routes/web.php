@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,4 @@ Route::middleware([
 Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/search', [GalleryController::class, 'search'])->name('search');
 Route::get('/book/{book}', [BooksController::class, 'details'])->name('book.details');
+Route::get('/categories/{category}', [CategoriesController::class, 'result'])->name('gallery.categories.show');
