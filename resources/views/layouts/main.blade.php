@@ -44,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page" >
+                            <a href="/categories" class="nav-link" aria-current="page" >
                                 التصنيفات
                                 <i class="fa-solid fa-list"></i>
                             </a>
