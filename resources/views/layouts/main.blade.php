@@ -51,14 +51,14 @@
                         </li>
     
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page" >
+                            <a href="/publishers" class="nav-link" aria-current="page" >
                                 الناشرون
                                 <i class="fa-solid fa-table"></i>
                             </a>
                         </li>
     
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page" >
+                            <a href="/authors" class="nav-link" aria-current="page" >
                                 المؤلفون
                                 <i class="fa-solid fa-pen"></i>
                             </a>

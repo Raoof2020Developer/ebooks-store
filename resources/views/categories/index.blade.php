@@ -32,7 +32,7 @@
                             </ul>
                             @else
                             <div class="col-12 alert alert-info mt-4 mx-auto text-center">
-                                لا توجد تصنيفات!
+                                لا توجد نتـائج!
                             </div>
                             @endif
 
