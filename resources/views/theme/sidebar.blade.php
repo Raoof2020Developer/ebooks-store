@@ -12,10 +12,11 @@
         <hr class="sidebar-divider my-0">
   
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item" {{-- {{ request()->is('admin') ? 'active' : '' }}" --}}>
-          <a class="nav-link text-right" href="#">
+        <li class="nav-item {{request()->is('admin') ? 'active' : ''}}">
+          <a class="nav-link text-right" href="{{route('admin.index')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>لوحة التحكم</span></a>
+            <strong>لوحة التحكم</strong>
+          </a>
         </li>
   
         <!-- Divider -->
@@ -23,39 +24,39 @@
   
   
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" {{-- request()->is('admin/books*') ? 'active' : '' }}" --}} >
-          <a class="nav-link text-right" href="#">
+        <li class="nav-item {{request()->is('admin/books*') ? 'active' : ''}}">
+          <a class="nav-link text-right" href="{{route('admin.books.index')}}">
           <i class="fas fa-book-open"></i>
             <span>الكتب</span>
           </a>
         </li>
   
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item" {{-- {{ request()->is('admin/categories*') ? 'active' : '' }}" --}} >
-          <a class="nav-link text-right" href="#">
+        <li class="nav-item {{request()->is('admin/categories*') ? 'active' : ''}}">
+          <a class="nav-link text-right" href="/admin/categories">
           <i class="fas fa-folder"></i>
             <span>التصنيفات</span>
           </a>
         </li>
   
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" {{--{{ request()->is('admin/authors*') ? 'active' : '' }}" --}} >
-          <a class="nav-link text-right" href="#">
+        <li class="nav-item {{request()->is("admin/authors*") ? 'active' : ''}}">
+          <a class="nav-link text-right" href="/admin/authors">
           <i class="fas fa-pen-fancy"></i>
             <span>المؤلفون</span>
           </a>
         </li>
   
         <!-- Nav Item - Charts -->
-        <li class="nav-item" {{-- {{ request()->is('admin/publishers*') ? 'active' : '' }}" --}}>
-          <a class="nav-link text-right" href="#">
+        <li class="nav-item {{request()->is('admin/publishers*') ? 'active' : ''}}">
+          <a class="nav-link text-right" href="/admin/publishers">
           <i class="fas fa-table"></i>
             <span>الناشرون</span></a>
         </li>
   
         <!-- Nav Item - Tables -->
-        <li class="nav-item" {{--  {{ request()->is('admin/users*') ? 'active' : '' }} --}}>
-          <a class="nav-link text-right" href="#">
+        <li class="nav-item {{request()->is('admin/users*') ? 'active' : ''}}" >
+          <a class="nav-link text-right" href="/admin/users">
           <i class="fas fa-users"></i>
             <span>المستخدمون</span></a>
         </li>

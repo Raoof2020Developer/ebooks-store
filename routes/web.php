@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoriesController;
@@ -48,6 +49,5 @@ Route::get('/authors', [AuthorsController::class, 'list'])->name('authors');
 Route::get('/authors/search', [AuthorsController::class, 'search'])->name('authors.search');
 Route::get('/authors/{author}', [AuthorsController::class, 'result'])->name('gallery.authors.show');
 
-Route::get('/admin', function() {
-    return view('theme.default');
-})->middleware('auth');
+Route::get('/admin', [AdminsController::class, 'index'])->name('admin.index');
+Route::get('/admin/books', [BooksController::class, 'index'])->name('admin.books.index');

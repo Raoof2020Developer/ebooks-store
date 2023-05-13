@@ -29,7 +29,7 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid">
-                <a href="{{url('/')}}" class="navbar-brand">مكتبتي</a>
+                <a href="{{url('/')}}" class="navbar-brand">مكتبة الهضاب</a>
                 <button 
                 class="navbar-toggler" 
                 type="button" 
