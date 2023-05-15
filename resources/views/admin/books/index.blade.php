@@ -9,6 +9,11 @@
 @endsection
 
 @section('content')
+    <a href="{{route('admin.books.create')}}" role="button" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        أضف كتـابا جديـدا
+    </a>
+    <hr />
     <div class="row">
         <div class="col-md-12">
             <table id="books-table" class="table table-striped table-bordered text-right" width="100%" cellspacing="0">
@@ -27,7 +32,7 @@
                     @foreach($books as $book)
                         <tr>
                             <td>
-                                <a href="">{{$book->title}}</a>
+                                <a href="{{route('books.show' , $book)}}">{{$book->title}}</a>
                             </td>
                             <td>{{$book->isbn}}</td>
                             <td>{{$book->category != null ? $book->category->name : ''}}</td>
