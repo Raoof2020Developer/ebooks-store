@@ -18,8 +18,8 @@ class Book extends Model
         'description',
         'publish_year',
         'nbr_of_copies',
+        'price',
         'nbr_of_pages',
-        'price'
     ];
 
     public function category() {

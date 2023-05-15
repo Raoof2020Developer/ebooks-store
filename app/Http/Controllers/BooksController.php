@@ -52,24 +52,22 @@ class BooksController extends Controller
             'publish_year' => 'numeric|nullable',
             'nbr_of_copies' => 'numeric|required',
             'nbr_of_pages' => 'numeric|required',
-            'price' => 'decimal:2|required'
+            'price' => 'numeric|required'
         ]);
 
         
-        $book = new Book;
-        
-        $book->title = $request->title;
-        $book->isbn = $request->isbn;
-        $book->cover_img = $this->uploadImg($request->cover_img);
-        $book->category_id = $request->category;
-        $book->publisher_id = $request->publisher;
-        $book->description = $request->description;
-        $book->publish_year = $request->publish_year;
-        $book->nbr_of_copies = $request->nbr_of_copies;
-        $book->nbr_of_pages = $request->nbr_of_pages;
-        $book->price = $request->price;
-
-        $book->save();
+        $book = Book::create([
+            'title' => $request->title,
+            'isbn' => $request->isbn,
+            'cover_img' => $this->uploadImg($request->cover_img),
+            'category' => $request->category,
+            'publisher' => $request->publisher,
+            'description' => $request->description,
+            'publish_year' => $request->publish_year,
+            'nbr_of_copies' => $request->nbr_of_copies,
+            'nbr_of_pages' => $request->nbr_of_pages,
+            'price' => $request->price
+        ]);
 
         $book->authors()->attach($request->authors);
 

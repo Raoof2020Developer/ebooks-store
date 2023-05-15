@@ -66,12 +66,14 @@
                             value="{{old('cover_img')}}"
                             autocomplete="cover_img"
                             accept="image/*"
+                            onchange="readCoverImg(this)"
                             >
                             @error('cover_img')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
                                 </span>
                             @enderror
+                            <img id="cover-img-thumb" class="image-fluid image-thumbnail p-5 border" width="300" height="auto" src="" alt="">
                         </div>
                     </div>
 
@@ -239,4 +241,21 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+    function readCoverImg(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = e => {
+                console.log(e.target.result)
+                $('#cover-img-thumb')
+                    .attr('src', e.target.result)
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection

@@ -30,9 +30,9 @@ return new class extends Migration
                     ->onDelete('set null');
 
             $table->foreign('publisher_id')
-            ->references('id')
-            ->on('publishers')
-            ->onDelete('set null');
+                    ->references('id')
+                    ->on('publishers')
+                    ->onDelete('set null');
 
             $table->timestamps();
         });
