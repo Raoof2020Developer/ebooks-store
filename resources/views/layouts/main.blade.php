@@ -89,6 +89,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-left px-2 mt-2 text-right">
+                                    @can('update-books');
+                                    <a href="{{route('admin.index')}}" class="dropdown-item"></a>
+                                    @endcan
                                     <div class="pt-4 pb-1 border-t border-gray-200">
                                         <div class="flex items-center px-4">
                                             <div>

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <a href="{{route('admin.books.create')}}" role="button" class="btn btn-primary">
+    <a href="{{route('books.create')}}" role="button" class="btn btn-primary">
         <i class="fas fa-plus"></i>
         أضف كتـابا جديـدا
     </a>
@@ -25,6 +25,7 @@
                         <th>المؤلفـون</th>
                         <th>النـاشر</th>
                         <th>السعـر</th>
+                        <th>خيـارات</th>
                     </tr>
                 </thead>
 
@@ -46,6 +47,20 @@
                             </td>
                             <td>{{ $book->publisher != null ? $book->publisher->name : ''}}</td>
                             <td>{{$book->price}}</td>
+                            <td>
+                                <a href="{{route('books.edit', $book)}}" class="btn btn-info btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                    تعديـل  
+                                </a>
+                                <form action="{{route('books.destroy', $book)}}" class="d-inline-block" method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل أنت متـأكـد؟')">
+                                        <i class="fa fa-trash"></i>
+                                        حـذف
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

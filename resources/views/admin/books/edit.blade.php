@@ -1,19 +1,19 @@
 @extends('theme.default')
 
 @section('heading')
-    إضـافة كتـاب جديـد
+    تعديل بيانات الكتاب
 @endsection
 
 @section('content')
     <div class="row justify-content-center">
         <div class="card mb-4 col-md-8">
             <div class="card-header">
-                أضـف كتـابا جديـدا
-            </div>
+                تعديل بيانات الكتاب {{$book->title}}
 
             <div class="card-body">
-                <form action="{{route('books.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('books.update', $book)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div class="form-group row">
                         <label for="title"  class="col-md-4 col-form-label text-md-right">عنـوان الكتـاب</label>
 
@@ -23,7 +23,7 @@
                             id="title" 
                             name="title" 
                             class="form-control @error('title') is-invalid @enderror"
-                            value="{{old('title')}}"
+                            value="{{$book->title}}"
                             autocomplete="title"
                             >
                             @error('title')
@@ -43,7 +43,7 @@
                             id="isbn" 
                             name="isbn" 
                             class="form-control @error('isbn') is-invalid @enderror"
-                            value="{{old('isbn')}}"
+                            value="{{$book->isbn}}"
                             autocomplete="isbn"
                             >
                             @error('isbn')
@@ -73,7 +73,7 @@
                                     <strong>{{$message}}</strong>
                                 </span>
                             @enderror
-                            <img id="cover-img-thumb" class="image-fluid image-thumbnail p-5 border" width="300" height="auto" src="" alt="">
+                            <img id="cover-img-thumb" class="image-fluid image-thumbnail p-5 border" width="300" height="auto" src="{{asset('storage/'. $book->cover_img)}}" alt="">
                         </div>
                     </div>
 
@@ -82,9 +82,9 @@
 
                         <div class="col-md-6">
                             <select id="category_id" name="category_id" class="form-control" >
-                                <option selected disabled>اختر تصنيفا</option>
+                                <option {{ $book->category == null ? 'selected' : ''}} disabled>اختر تصنيفا</option>
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}" {{$book->category == $category ? 'selected' : ''}}>{{$category->name}}</option>
                                 @endforeach
                             </select> 
                             @error('category_id')
@@ -100,9 +100,9 @@
 
                         <div class="col-md-6">
                             <select id="authors" multiple name="authors" class="form-control" >
-                                <option selected disabled>اختر المؤلفين</option>
+                                <option {{ $book->authors()->count() == 0 ? 'selected' : ''}} disabled>اختر المؤلفين</option>
                                 @foreach($authors as $author)
-                                <option value="{{$author->id}}">{{$author->name}}</option>
+                                <option value="{{$author->id}}" {{$book->authors->contains($author) ? 'selected' : ''}}>{{$author->name}}</option>
                                 @endforeach
                             </select>
                             @error('authors')
@@ -118,9 +118,9 @@
 
                         <div class="col-md-6">
                             <select id="publisher_id" name="publisher_id" class="form-control" >
-                                <option selected disabled>اختر ناشرا</option>
+                                <option {{ $book->publisher == null ? 'selected' : ''}} disabled>اختر ناشرا</option>
                                 @foreach($publishers as $publisher)
-                                <option value="{{$publisher->id}}">{{$publisher->name}}</option>
+                                <option value="{{$publisher->id}}" {{$book->publisher == $publisher ? 'selected' : ''}}>{{$publisher->name}}</option>
                                 @endforeach
                             </select> 
                             @error('publisher')
@@ -143,6 +143,7 @@
                             value="{{old('description')}}"
                             autocomplete="description"
                             >
+                            {{$book->description}}
                             </textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -161,7 +162,7 @@
                             id="publish_year" 
                             name="publish_year" 
                             class="form-control @error('publish_year') is-invalid @enderror"
-                            value="{{old('publish_year')}}"
+                            value="{{$book->publish_year}}"
                             autocomplete="publish_year"
                             >
                             @error('publish_year')
@@ -181,7 +182,7 @@
                             id="nbr_of_pages" 
                             name="nbr_of_pages" 
                             class="form-control @error('nbr_of_pages') is-invalid @enderror"
-                            value="{{old('nbr_of_pages')}}"
+                            value="{{$book->nbr_of_pages}}"
                             autocomplete="nbr_of_pages"
                             >
                             @error('nbr_of_pages')
@@ -201,7 +202,7 @@
                             id="nbr_of_copies" 
                             name="nbr_of_copies" 
                             class="form-control @error('nbr_of_copies') is-invalid @enderror"
-                            value="{{old('nbr_of_copies')}}"
+                            value="{{$book->nbr_of_copies}}"
                             autocomplete="nbr_of_copies"
                             >
                             @error('nbr_of_copies')
@@ -221,7 +222,7 @@
                             id="price" 
                             name="price" 
                             class="form-control @error('price') is-invalid @enderror"
-                            value="{{old('price')}}"
+                            value="{{$book->price}}"
                             autocomplete="price"
                             >
                             @error('price')
@@ -234,7 +235,7 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary">أضـف الكتـاب</button>
+                            <button type="submit" class="btn btn-primary">حفظ التعديـلات</button>
                         </div>
                     </div>
                 </form>

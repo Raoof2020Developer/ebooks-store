@@ -12,14 +12,14 @@ class Book extends Model
     protected $fillable = [
         'title',
         'isbn',
-        'cover_img',
         'category_id',
         'publisher_id',
         'description',
         'publish_year',
         'nbr_of_copies',
-        'price',
         'nbr_of_pages',
+        'price',
+        'cover_img',
     ];
 
     public function category() {

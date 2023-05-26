@@ -13,7 +13,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -21,7 +23,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -29,7 +31,19 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        session()->flash('flash_message', 'تمت إضـافة التصنيـف بنجـاح');
+
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -45,6 +59,7 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
+        return view('admin.categories.edit', compact('category'));
         //
     }
 
@@ -53,7 +68,19 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        session()->flash('flash_message', 'تمت تعديـل التصنيـف بنجـاح');
+
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -61,7 +88,15 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category = Category::findOrFail($category->id);
+
+        if ($category) {
+            $category->delete();
+
+            session()->flash('flash_message', 'تم حذف التصنيف بنجـاح');
+        }
+
+        return redirect(route('categories.index'));
     }
 
     public function result(Category $category) {

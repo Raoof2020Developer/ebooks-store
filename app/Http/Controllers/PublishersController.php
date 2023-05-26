@@ -12,7 +12,8 @@ class PublishersController extends Controller
      */
     public function index()
     {
-        //
+        $publishers = Publisher::all();
+        return view('admin.publishers.index', compact('publishers'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PublishersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.publishers.create');
     }
 
     /**
@@ -28,7 +29,19 @@ class PublishersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'nullable'
+        ]);
+
+        Publisher::create([
+            'name' => $request->name,
+            'address' => $request->address
+        ]);
+
+        session()->flash('flash_message', 'تمت إضـافة النـاشر بنجاح');
+
+        return redirect(route('publishers.index'));
     }
 
     /**
@@ -44,7 +57,7 @@ class PublishersController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        //
+        return view('admin.publishers.edit', compact('publisher'));
     }
 
     /**
@@ -52,7 +65,16 @@ class PublishersController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-        //
+        $this->validate($request, ['name' => 'required']);
+
+        $publisher->update([
+            'name' => $request->name,
+            'address' => $request->address
+        ]);
+
+        session()->flash('flash_message', 'تمت تعديـل النـاشر بنجاح');
+
+        return redirect(route('publishers.index'));
     }
 
     /**
@@ -60,7 +82,11 @@ class PublishersController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        //
+        $publisher->delete();
+        session()->flash('flash_message', 'تمت حذف النـاشر بنجاح');
+
+        return redirect(route('publishers.index'));
+
     }
 
     public function result(Publisher $publisher) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PublishersController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,8 +50,12 @@ Route::get('/authors', [AuthorsController::class, 'list'])->name('authors');
 Route::get('/authors/search', [AuthorsController::class, 'search'])->name('authors.search');
 Route::get('/authors/{author}', [AuthorsController::class, 'result'])->name('gallery.authors.show');
 
-Route::get('/admin', [AdminsController::class, 'index'])->name('admin.index');
-Route::get('/admin/books', [BooksController::class, 'index'])->name('admin.books.index');
-Route::get('/admin/books/create', [BooksController::class, 'create'])->name('admin.books.create');
-Route::post('/admin/books/store', [BooksController::class, 'store'])->name('books.store');
-Route::get('/admin/books/{book}', [BooksController::class, 'show'])->name('books.show');
+
+Route::prefix('/admin')->middleware('can:update-books')->group(function() {
+    Route::get('/', [AdminsController::class, 'index'])->name('admin.index');
+    Route::resource('/books', BooksController::class);
+    Route::resource('/categories', CategoriesController::class);
+    Route::resource('/publishers', PublishersController::class);
+    Route::resource('/authors', AuthorsController::class);
+    Route::resource('/users', UsersController::class)->middleware('can:update-users');
+});

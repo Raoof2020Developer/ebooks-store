@@ -105,8 +105,23 @@
                             <th>السعـر</th>
                             <td>{{ $book->price}}$</td>
                         </tr>
-
                     </table>
+
+                    <div>
+                        <a href="{{route('books.edit', $book)}}" class="btn btn-info btn-sm">
+                            <i class="fa fa-edit"></i>
+                            تعديـل  
+                        </a>
+                        <form action="{{route('books.destroy', $book)}}" class="d-inline-block" method="POST">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل أنت متـأكـد؟')">
+                                <i class="fa fa-trash"></i>
+                                حـذف
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

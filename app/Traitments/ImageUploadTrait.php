@@ -11,7 +11,8 @@ trait ImageUploadTrait {
     public function uploadImg($img) {
         $imgName = $this->imgName($img);
 
-        return Image::make($img)->resize($this->imgWidth, $this->imgHeight)->save(storage_path($this->imgPath. '/'. $imgName));
+        Image::make($img)->resize($this->imgWidth, $this->imgHeight)->save(storage_path($this->imgPath. '/'. $imgName));
+        return 'images/covers/' . $imgName;
     }
 
     public function imgName($img) {
