@@ -21,6 +21,35 @@
             font-family: 'Cairo', sans-serif;
             background-color: #f0f0f0;
         }
+
+        .score {
+            display: block;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .score-wrap {
+            display: inline-block;
+            position: relative;
+            height: 19px;
+        }
+
+        .score .stars-active {
+            color: #ffca00;
+            position: relative;
+            z-index: 10;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .score .stars-inactive {
+            color: lightgray;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     </style>
 
     @yield('head')

@@ -27,6 +27,33 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <th>تقييم الكتـاب</th>
+                            <td>
+                                <span class="score">
+                                    <div class="scrore-wrap">
+                                        <span class="stars-active" style="width: {{$book->rate()*20}}%;">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+
+                                        <span class="stars-inactive">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </span>
+
+                                <span>عدد التقييمـات:  {{$book->ratings()->count()}} تقييم</span>
+                            </td>
+                        </tr>
+
                         @if ($book->isbn != null)
                         <tr>
                             <th>الرقم التسـلسلـي</th>

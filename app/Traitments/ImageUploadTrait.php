@@ -12,7 +12,7 @@ trait ImageUploadTrait {
         $imgName = $this->imgName($img);
 
         Image::make($img)->resize($this->imgWidth, $this->imgHeight)->save(storage_path($this->imgPath. '/'. $imgName));
-        return 'images/covers/' . $imgName;
+        return 'images/covers' . $imgName;
     }
 
     public function imgName($img) {
